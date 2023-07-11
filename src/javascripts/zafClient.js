@@ -1,9 +1,11 @@
-let client;
+// The ZAFClient is imported within the index.html file.
+let client
 
-if (typeof ZAFClient === "undefined") {
-  throw new Error("ZAFClient cannot run outside Zendesk");
+if (typeof ZAFClient === 'undefined') {
+  throw new Error('ZAFClient cannot run outside Zendesk')
 } else {
-  client = ZAFClient.init();
+  // eslint-disable-next-line no-undef
+  client = ZAFClient.init()
 }
 
-export default client;
+export default client

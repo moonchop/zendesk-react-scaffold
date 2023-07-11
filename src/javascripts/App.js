@@ -1,17 +1,10 @@
-import React, { useEffect } from "react";
-import client from "./zafClient";
+import React, { useEffect } from 'react'
+import client from './zafClient'
 
-function App() {
+export const App = () => {
   useEffect(() => {
-    client.invoke("resize", { width: "100%", height: "500px" });
-  }, []);
-  return (
-    <div className="">
-      Hi this is a sample app2
-      <div className="font-extrabold">hihi</div>
-      <div className="w-5 text-red-600 bg-blue-400 j-5">hel</div>
-    </div>
-  );
-}
+    client.invoke('resize', { width: '100%', height: '500px' })
+  }, [])
 
-export default App;
+  return <div className="text-xl font-bold">Hi this is a sample app2</div>
+}

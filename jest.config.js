@@ -1,17 +1,15 @@
 module.exports = {
   verbose: true,
   testEnvironmentOptions: {
-    url: 'http://localhost/'
+    url: 'http://localhost/',
   },
   testEnvironment: 'jsdom',
   collectCoverage: true,
   globals: {
     ZAFClient: {
-      init: () => {}
-    }
+      init: () => {},
+    },
   },
-  coveragePathIgnorePatterns: [
-    '<rootDir>/spec'
-  ],
-  roots: ['./spec']
+  coveragePathIgnorePatterns: ['<rootDir>/spec'],
+  roots: ['./spec'],
 }

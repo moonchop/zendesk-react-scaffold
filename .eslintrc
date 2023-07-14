@@ -13,9 +13,10 @@
   },
   "plugins": ["react"],
   "rules": {
-    "comma-dangle": ["never"],
+    "comma-dangle": ["error", "always-multiline"],
     "indent": "off",
     "react/prop-types": "off",
-    "space-before-function-paren": ["never"]
+    "space-before-function-paren": ["never"],
+    "multiline-ternary": ["error", "always"]
   }
 }

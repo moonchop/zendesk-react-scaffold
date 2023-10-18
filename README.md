@@ -104,7 +104,7 @@ Specs live under the `spec` directory.
 Installing and updating [ZCLI](https://developer.zendesk.com/documentation/apps/getting-started/using-zcli/)
 
 ```
-npm install @zendesk/zcli -g
+yarn add @zendesk/zcli -g
 ```
 
 ### deploy
@@ -112,10 +112,22 @@ npm install @zendesk/zcli -g
 앱이 서버 측 유효성 검사를 통과하는지 확인하려면 다음을 실행하세요.
 
 ```
+yarn validate
+```
+
+or
+
+```
 zcli apps:validate dist
 ```
 
-확인에 성공하면 다음을 실행하여 Zendesk 계정에 앱을 업로드할 수 있어요.
+확인에 성공하면 다음을 실행하여 Zendesk 계정에 새로운 앱을 업로드할 수 있어요.
+
+```
+yarn upload
+```
+
+or
 
 ```
 zcli apps:create dist
@@ -124,10 +136,22 @@ zcli apps:create dist
 계정에서 생성된 후 앱을 업데이트하려면 다음을 실행하세요.
 
 ```
+yarn update
+```
+
+or
+
+```
 zcli apps:update dist
 ```
 
 수동 업로드를 위한 zip 아카이브를 생성하려면 다음을 실행하세요.
+
+```
+yarn package
+```
+
+or
 
 ```
 zcli apps:package dist

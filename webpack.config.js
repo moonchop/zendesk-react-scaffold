@@ -1,44 +1,51 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TranslationsPlugin = require("./webpack/translations-plugin");
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TranslationsPlugin = require('./webpack/translations-plugin')
 
 const externalAssets = {
-  js: ["https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"],
-};
+  js: ['https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js'],
+}
 
 module.exports = {
   entry: {
-    app: ["@babel/polyfill", "./src/javascripts/index.js", "./src/index.css"],
+    app: ['@babel/polyfill', './src/javascripts/index.js', './src/index.css'],
   },
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist/assets"),
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist/assets'),
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', 'json'],
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(png|svg|gif|jpg|jpeg|webp|avif|heic)$/,
+        use: 'file-loader',
+      },
+      {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
+          presets: ['@babel/preset-env', '@babel/preset-react'],
         },
       },
       {
-        type: "javascript/auto",
+        type: 'javascript/auto',
         test: /\.json$/,
-        include: path.resolve(__dirname, "./src/translations"),
-        use: "./webpack/translations-loader",
+        include: path.resolve(__dirname, './src/translations'),
+        use: './webpack/translations-loader',
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { url: false } },
-          "postcss-loader",
+          { loader: 'css-loader', options: { url: false } },
+          'postcss-loader',
         ],
       },
     ],
@@ -48,31 +55,31 @@ module.exports = {
     // Empties the dist folder
     new CleanWebpackPlugin({
       verbose: true,
-      cleanOnceBeforeBuildPatterns: [path.join(process.cwd(), "dist/**/*")],
+      cleanOnceBeforeBuildPatterns: [path.join(process.cwd(), 'dist/**/*')],
     }),
 
     // Copy over static assets
     new CopyWebpackPlugin({
       patterns: [
-        { from: "src/manifest.json", to: "../[name][ext]" },
-        { from: "src/images/*", to: "./[name][ext]" },
+        { from: 'src/manifest.json', to: '../[name][ext]' },
+        { from: 'src/images/*', to: './[name][ext]' },
       ],
     }),
 
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: '[name].css',
     }),
 
     new TranslationsPlugin({
-      path: path.resolve(__dirname, "./src/translations"),
+      path: path.resolve(__dirname, './src/translations'),
     }),
 
     new HtmlWebpackPlugin({
       warning:
-        "AUTOMATICALLY GENERATED FROM ./src/templates/iframe.html - DO NOT MODIFY THIS FILE DIRECTLY",
+        'AUTOMATICALLY GENERATED FROM ./src/templates/iframe.html - DO NOT MODIFY THIS FILE DIRECTLY',
       vendorJs: externalAssets.js,
-      template: "./src/templates/iframe.html",
-      filename: "iframe.html",
+      template: './src/templates/iframe.html',
+      filename: 'iframe.html',
     }),
   ],
-};
+}

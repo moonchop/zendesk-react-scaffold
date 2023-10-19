@@ -2,6 +2,12 @@ _Use of this software is subject to important terms and conditions as set forth 
 
 # React App Scaffold
 
+Run this command. You can download this project in your local environment
+
+```
+npx create-zendesk-react-app my-app
+```
+
 ## Description
 
 zendesk에서 지원하는 scaffold를 업그레이드 한 `react-template` 입니다.

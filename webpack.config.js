@@ -63,6 +63,7 @@ module.exports = {
       patterns: [
         { from: 'src/manifest.json', to: '../[name][ext]' },
         { from: 'src/images/*', to: './[name][ext]' },
+        { from: 'zcli.apps.config.json', to: '../[name][ext]' },
       ],
     }),
 
